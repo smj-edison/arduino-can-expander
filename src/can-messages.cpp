@@ -4,7 +4,7 @@
 // my CAN network implementation is pretty simple
 // LSB bits 1-5 are the "to" address
 // LSB bits 6-10 are the "from" address
-// LSB bit 11 is a flag, if true it is a broadcast to everypne
+// LSB bit 11 is a flag, if true it is a broadcast to everyone
 
 can_frame start_of_can_message (uint8_t from, uint8_t to) {
     can_frame frame;
