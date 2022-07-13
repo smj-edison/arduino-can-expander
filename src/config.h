@@ -1,6 +1,6 @@
 #pragma once
 
-#define DEVICE_ID 0x02
+#define DEVICE_ID 0x08
 // #define OVERRIDE_EEPROM
 
 #define MIDI_INTERFACE_ID 0x00
