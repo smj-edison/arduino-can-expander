@@ -43,7 +43,11 @@ void write_to_EEPROM() {
     EEPROM.write(1, device_address);
 }
 
-void config_MCP2515_filters() {
+void config_MCP2515_filters(bool enable_config_mode = true) {
+    if (enable_config_mode) {
+        mcp2515.setConfigMode();
+    }
+
     // my CAN network implementation is pretty simple:
     // LSB bits 1-5 are the "to" address
     // LSB bits 6-10 are the "from" address
@@ -56,7 +60,14 @@ void config_MCP2515_filters() {
 
     // however, if bit 11 is set, we should look at the message
     mcp2515.setFilterMask(MCP2515::MASK1, false, 0b10000000000);
-    mcp2515.setFilter(MCP2515::RXF2, false, 0b10000000000);
+    mcp2515.setFilter(MCP2515::RXF2, false,      0b10000000000);
+    mcp2515.setFilter(MCP2515::RXF3, false,      0b10000000000);
+    mcp2515.setFilter(MCP2515::RXF4, false,      0b10000000000);
+    mcp2515.setFilter(MCP2515::RXF5, false,      0b10000000000);
+
+    if (enable_config_mode) {
+        mcp2515.setNormalMode();
+    }
 }
 
 void setup() {
@@ -77,6 +88,8 @@ void setup() {
 #ifdef DEBUGGING
     Serial.begin(9600);
     Serial.println("Serial debugging initialized");
+    Serial.print("Current address: ");
+    Serial.println(device_address, HEX);
 #endif
 
     // init bits_changed
@@ -87,7 +100,6 @@ void setup() {
     // set up CAN interface
     mcp2515.reset();
     mcp2515.setBitrate(CAN_500KBPS, MCP_8MHZ);
-    mcp2515.setNormalMode();
     config_MCP2515_filters();
 
     // set up I2C
@@ -142,7 +154,12 @@ void loop() {
             frame = note_off(device_address, bits_changed[i].bit_index);
         }
 
-        mcp2515.sendMessage(&frame);
+        MCP2515::ERROR status = mcp2515.sendMessage(&frame);
+
+#ifdef DEBUGGING
+        Serial.print("Received send status code: ");
+        Serial.println(status);
+#endif
     }
 
     // LAST STEPS //
