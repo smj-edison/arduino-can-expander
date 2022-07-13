@@ -8,5 +8,5 @@
 // address reassign, 1 byte, the new address
 #define ADDRESS_REASSIGN 0x00
 
-#define NOTE_ON_MSG 0x20
-#define NOTE_OFF_MSG 0x21
+#define BIT_ON_MSG 0x20
+#define BIT_OFF_MSG 0x21
