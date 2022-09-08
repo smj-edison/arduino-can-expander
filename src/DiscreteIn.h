@@ -3,6 +3,7 @@
 struct DiscreteIn {
     int pin;
     uint8_t bit_index;
+    bool invert;
     bool did_change;
     bool current_value;
     bool last_value;

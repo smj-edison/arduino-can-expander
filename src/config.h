@@ -21,6 +21,7 @@
 
 #define DISCRETE_IN_1_PIN A2
 #define DISCRETE_IN_1_BIT_INDEX 64
+#define DISCRETE_IN_1_INVERT true
 #define DISCRETE_IN_1_PULLUP
 
 // #define DEBUGGING

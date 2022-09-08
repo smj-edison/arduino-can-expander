@@ -43,7 +43,7 @@ AnalogIn analog_in_2 {
 
 #ifdef DISCRETE_IN_1_PIN
 DiscreteIn discrete_in_1 {
-    DISCRETE_IN_1_PIN, DISCRETE_IN_1_BIT_INDEX, false, false, false
+    DISCRETE_IN_1_PIN, DISCRETE_IN_1_BIT_INDEX, DISCRETE_IN_1_INVERT, false, false, false
 };
 #endif
 
