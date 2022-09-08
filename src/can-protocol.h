@@ -10,3 +10,5 @@
 
 #define BIT_ON_MSG 0x20
 #define BIT_OFF_MSG 0x21
+
+#define CONTINOUS_CHANGE 0x30

@@ -33,3 +33,14 @@ can_frame note_off (uint8_t device_address, uint8_t note) {
 
     return frame;
 }
+
+can_frame continous_change (uint8_t device_address, uint8_t channel, uint8_t value) {
+    can_frame frame = start_of_can_message(device_address, MIDI_INTERFACE_ID);
+
+    frame.can_dlc = 3;
+    frame.data[0] = CONTINOUS_CHANGE;
+    frame.data[1] = channel;
+    frame.data[2] = value;
+
+    return frame;
+}
