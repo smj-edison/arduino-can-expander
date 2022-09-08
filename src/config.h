@@ -1,6 +1,6 @@
 #pragma once
 
-#define DEVICE_ID 0x03
+#define DEVICE_ID 0x05
 // #define OVERRIDE_EEPROM
 
 #define MIDI_INTERFACE_ID 0x00
@@ -21,6 +21,7 @@
 
 #define DISCRETE_IN_1_PIN A2
 #define DISCRETE_IN_1_BIT_INDEX 64
+#define DISCRETE_IN_1_PULLUP
 
 // #define DEBUGGING
 // #define DEBUGGING_VERBOSE
