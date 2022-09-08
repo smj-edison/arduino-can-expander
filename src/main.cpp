@@ -216,9 +216,9 @@ void loop() {
 
         can_frame frame;
         if (bits_changed[i].new_state == true) {
-            frame = note_on(device_address, bits_changed[i].bit_index);
+            frame = bit_on(device_address, bits_changed[i].bit_index);
         } else {
-            frame = note_off(device_address, bits_changed[i].bit_index);
+            frame = bit_off(device_address, bits_changed[i].bit_index);
         }
 
         sendMessage(frame);
@@ -240,9 +240,9 @@ void loop() {
 
         can_frame frame;
         if (bits_changed[i].new_state == true) {
-            frame = note_on(device_address, bits_changed[i].bit_index + 64);
+            frame = bit_on(device_address, bits_changed[i].bit_index + 64);
         } else {
-            frame = note_off(device_address, bits_changed[i].bit_index + 64);
+            frame = bit_off(device_address, bits_changed[i].bit_index + 64);
         }
 
         sendMessage(frame);
@@ -274,9 +274,9 @@ void loop() {
     if (discrete_in_1.did_change) {
         can_frame frame;
         if (discrete_in_1.current_value) {
-            frame = note_on(device_address, discrete_in_1.bit_index);
+            frame = bit_on(device_address, discrete_in_1.bit_index);
         } else {
-            frame = note_off(device_address, discrete_in_1.bit_index);
+            frame = bit_off(device_address, discrete_in_1.bit_index);
         }
 
         sendMessage(frame);

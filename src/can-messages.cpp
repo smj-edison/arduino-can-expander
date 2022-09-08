@@ -14,7 +14,7 @@ can_frame start_of_can_message (uint8_t from, uint8_t to) {
     return frame;
 }
 
-can_frame note_on (uint8_t device_address, uint8_t note) {
+can_frame bit_on (uint8_t device_address, uint8_t note) {
     can_frame frame = start_of_can_message(device_address, MIDI_INTERFACE_ID);
 
     frame.can_dlc = 2;
@@ -24,7 +24,7 @@ can_frame note_on (uint8_t device_address, uint8_t note) {
     return frame;
 }
 
-can_frame note_off (uint8_t device_address, uint8_t note) {
+can_frame bit_off (uint8_t device_address, uint8_t note) {
     can_frame frame = start_of_can_message(device_address, MIDI_INTERFACE_ID);
 
     frame.can_dlc = 2;
