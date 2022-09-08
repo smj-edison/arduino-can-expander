@@ -132,7 +132,7 @@ void setup() {
 #endif
 
 #ifdef DEBUGGING
-    Serial.begin(9600);
+    Serial.begin(115200);
     Serial.println("Serial debugging initialized");
     Serial.print("Current address: ");
     Serial.println(device_address, HEX);
@@ -159,6 +159,10 @@ void setup() {
 #endif
 #ifdef USE_BUS_2
     bus_init_as_input(bus2);
+#endif
+
+#ifdef DISCRETE_IN_1_PULLUP
+    pinMode(DISCRETE_IN_1_PIN, INPUT_PULLUP);
 #endif
 }
 
@@ -258,6 +262,11 @@ void loop() {
     if (analog_in_1.did_change) {
         can_frame frame = continous_change(device_address, analog_in_1.channel, analog_in_1.current_value);
         sendMessage(frame);
+
+#ifdef DEBUGGING
+        Serial.print("Changed (analog in 1): ");
+        Serial.println(analog_in_1.current_value);
+#endif
     }
 #endif
 #ifdef ANALOG_IN_2_PIN
@@ -266,6 +275,11 @@ void loop() {
     if (analog_in_2.did_change) {
         can_frame frame = continous_change(device_address, analog_in_2.channel, analog_in_2.current_value);
         sendMessage(frame);
+
+#ifdef DEBUGGING
+        Serial.print("Changed (analog in 2): ");
+        Serial.println(analog_in_2.current_value);
+#endif
     }
 #endif
 #ifdef DISCRETE_IN_1_PIN
@@ -280,6 +294,11 @@ void loop() {
         }
 
         sendMessage(frame);
+
+#ifdef DEBUGGING
+        Serial.print("Changed (discrete in 1): ");
+        Serial.println(discrete_in_1.current_value);
+#endif
     }
 #endif
 }
